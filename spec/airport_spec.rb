@@ -43,6 +43,9 @@ describe Airport do
   describe '#take_off' do
     it 'instructs a plane to take_off' do
       airport.land(plane)
+
+      expect(plane).to receive(:take_off)
+      
       airport.take_off(plane)
 
       expect(airport.planes).not_to include plane

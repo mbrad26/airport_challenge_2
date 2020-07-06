@@ -2,9 +2,9 @@ class Plane
   def initialize
     @flying = true
   end
-  
+
   def take_off
-    raise 'Plane already flying!'
+    raise 'Plane already flying!' if @flying
   end
 
   def land
