@@ -23,4 +23,17 @@ describe Airport do
       expect(airport.planes).not_to include plane
     end
   end
+
+  context 'when airport is full' do
+    it 'prevents landing' do
+      capacity = 10
+      error_message = 'Airport at full capacity!'
+
+      capacity.times do
+        airport.land(plane)
+      end
+
+      expect{ airport.land(plane) }.to raise_error error_message
+    end
+  end
 end
