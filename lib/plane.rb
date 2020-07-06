@@ -1,6 +1,7 @@
 class Plane
   def initialize
     @flying = true
+    @airport = nil
   end
 
   def take_off
@@ -11,9 +12,11 @@ class Plane
     raise 'Plane already landed!' unless @flying
 
     @flying = false
+    @airport = airport
   end
 
   def airport
-    raise 'Plane is flying!'
+    raise 'Plane is flying!' if @flying
+    @airport
   end
 end

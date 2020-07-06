@@ -8,6 +8,11 @@ describe Plane do
   it { is_expected.to respond_to(:airport) }
   it { is_expected.to respond_to(:land).with(1).argument }
 
+  it 'keeps a record of the landing airport' do
+    plane.land(airport)
+
+    expect(plane.airport).to eq airport
+  end
 
   describe '#take_off' do
     context 'when plane is flying' do
