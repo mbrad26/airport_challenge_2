@@ -4,11 +4,14 @@ describe Airport do
   let(:airport) { described_class.new }
   let(:plane) { instance_double(Plane) }
 
+  before :each do
+    allow(airport).to receive(:stormy?) { false }
+  end
+
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
   it 'has a default capacity' do
-    allow(airport).to receive(:stormy?) { false }
     capacity = described_class::CAPACITY
     error_message = 'Airport at full capacity!'
 
@@ -19,7 +22,6 @@ describe Airport do
 
   describe '#land' do
     it 'instructs a plane to land' do
-      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
 
       expect(airport.planes).to include plane
@@ -37,7 +39,6 @@ describe Airport do
 
   describe '#take_off' do
     it 'instructs a plane to take_off' do
-      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
       airport.take_off(plane)
 
