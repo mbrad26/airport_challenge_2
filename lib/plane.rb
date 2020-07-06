@@ -17,6 +17,7 @@ class Plane
 
   def airport
     raise 'Plane is flying!' if flying
+    
     @airport
   end
 

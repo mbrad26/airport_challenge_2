@@ -3,7 +3,7 @@ require 'airport'
 describe Airport do
   subject(:airport) { described_class.new(weather) }
   let(:plane) { instance_double(Plane, land: nil) }
-  let(:weather) { instance_double(Weather)}
+  let(:weather) { instance_double(Weather) }
 
   before :each do
     allow(weather).to receive(:stormy?) { false }
@@ -45,7 +45,7 @@ describe Airport do
       airport.land(plane)
 
       expect(plane).to receive(:take_off)
-      
+
       airport.take_off(plane)
 
       expect(airport.planes).not_to include plane
