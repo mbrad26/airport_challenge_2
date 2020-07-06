@@ -46,6 +46,16 @@ describe Airport do
       expect(airport.planes).not_to include plane
     end
 
+    context 'when plane not at the airport' do
+      it 'raises an error' do
+        error_message = 'Plane not at this airport!'
+        new_airport = described_class.new(15, weather)
+        new_airport.land(plane)
+
+        expect { airport.take_off(plane) }.to raise_error error_message
+      end
+    end
+
     context 'when weather is stormy' do
       it 'prevents take_off' do
         error_message = 'Plane can not take_off: weather is stormy!'
