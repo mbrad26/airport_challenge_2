@@ -15,4 +15,16 @@ describe Airport do
       expect(airport.planes).to include plane
     end
   end
+
+  describe '#take_off' do
+    it 'instructs a plane to take_off' do
+      airport = described_class.new
+      plane = instance_double('Plane')
+
+      airport.land(plane)
+      airport.take_off(plane)
+
+      expect(airport.planes).not_to include plane
+    end
+  end
 end
