@@ -9,11 +9,12 @@ class Airport
 
   def land(plane)
     raise 'Airport at full capacity!' if full?
+
     planes << plane
   end
 
   def take_off(plane)
-    planes.pop
+    planes.delete(plane)
   end
 
   private

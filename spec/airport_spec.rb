@@ -13,7 +13,7 @@ describe Airport do
 
     capacity.times { airport.land(plane) }
 
-    expect{ airport.land(plane) }.to raise_error error_message
+    expect { airport.land(plane) }.to raise_error error_message
   end
 
   describe '#land' do
