@@ -7,7 +7,7 @@ class Plane
     raise 'Plane already flying!' if @flying
   end
 
-  def land
+  def land(airport)
     raise 'Plane already landed!' unless @flying
 
     @flying = false
