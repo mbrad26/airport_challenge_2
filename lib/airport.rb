@@ -14,6 +14,7 @@ class Airport
     raise 'Airport at full capacity!' if full?
     raise 'Plane can not land: weather is stormy!' if stormy?
 
+    plane.land
     planes << plane
   end
 

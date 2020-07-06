@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   subject(:airport) { described_class.new(weather) }
-  let(:plane) { instance_double(Plane) }
+  let(:plane) { instance_double(Plane, land: nil) }
   let(:weather) { instance_double(Weather)}
 
   before :each do
@@ -23,6 +23,8 @@ describe Airport do
 
   describe '#land' do
     it 'instructs a plane to land' do
+      expect(plane).to receive(:land)
+
       airport.land(plane)
 
       expect(airport.planes).to include plane
