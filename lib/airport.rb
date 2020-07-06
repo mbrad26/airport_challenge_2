@@ -8,11 +8,17 @@ class Airport
   end
 
   def land(plane)
-    raise 'Airport at full capacity!' if planes.length >= capacity
+    raise 'Airport at full capacity!' if full?
     planes << plane
   end
 
   def take_off(plane)
     planes.pop
+  end
+
+  private
+
+  def full?
+    planes.length >= capacity
   end
 end
