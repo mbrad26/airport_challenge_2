@@ -1,11 +1,12 @@
 require 'airport'
 
 describe Airport do
-  let(:airport) { described_class.new }
+  subject(:airport) { described_class.new(weather) }
   let(:plane) { instance_double(Plane) }
+  let(:weather) { instance_double(Weather)}
 
   before :each do
-    allow(airport).to receive(:stormy?) { false }
+    allow(weather).to receive(:stormy?) { false }
   end
 
   it { is_expected.to respond_to(:land).with(1).argument }
@@ -30,7 +31,7 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents landing' do
         error_message = 'Plane can not land: weather is stormy!'
-        allow(airport).to receive(:stormy?) { true }
+        allow(weather).to receive(:stormy?) { true }
 
         expect { airport.land(plane) }.to raise_error error_message
       end
@@ -48,7 +49,7 @@ describe Airport do
     context 'when weather is stormy' do
       it 'prevents take_off' do
         error_message = 'Plane can not take_off: weather is stormy!'
-        allow(airport).to receive(:stormy?) { true }
+        allow(weather).to receive(:stormy?) { true }
 
         expect { airport.take_off(plane) }.to raise_error error_message
       end
