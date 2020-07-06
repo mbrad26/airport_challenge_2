@@ -2,7 +2,7 @@ require 'airport'
 
 describe Airport do
   let(:airport) { described_class.new }
-  let(:plane) { instance_double('Plane') }
+  let(:plane) { instance_double(Plane) }
 
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
