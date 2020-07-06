@@ -9,6 +9,7 @@ class Airport
 
   def land(plane)
     raise 'Airport at full capacity!' if full?
+    raise 'Plane can not land: weather is stormy!' if stormy?
 
     planes << plane
   end

@@ -8,6 +8,7 @@ describe Airport do
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
   it 'has a default capacity' do
+    allow(airport).to receive(:stormy?) { false }
     capacity = described_class::CAPACITY
     error_message = 'Airport at full capacity!'
 
@@ -18,9 +19,19 @@ describe Airport do
 
   describe '#land' do
     it 'instructs a plane to land' do
+      allow(airport).to receive(:stormy?) { false }
       airport.land(plane)
 
       expect(airport.planes).to include plane
+    end
+
+    context 'when weather is stormy' do
+      it 'prevents landing' do
+        error_message = 'Plane can not land: weather is stormy!'
+        allow(airport).to receive(:stormy?) { true }
+
+        expect { airport.land(plane) }.to raise_error error_message
+      end
     end
   end
 
