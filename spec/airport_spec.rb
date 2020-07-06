@@ -7,6 +7,15 @@ describe Airport do
   it { is_expected.to respond_to(:land).with(1).argument }
   it { is_expected.to respond_to(:take_off).with(1).argument }
 
+  it 'has a default capacity' do
+    capacity = described_class::CAPACITY
+    error_message = 'Airport at full capacity!'
+
+    capacity.times { airport.land(plane) }
+
+    expect{ airport.land(plane) }.to raise_error error_message
+  end
+
   describe '#land' do
     it 'instructs a plane to land' do
       airport.land(plane)
